@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update and Enter</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <svg width="960" height="500"></svg>
+    <script>
+{
+
+const render = (data) => {
+    var rects = d3.select('svg')
+        .selectAll('rect')
+        .data(data);
+
+    rects.exit().remove();
+
+    rects
+        .enter()
+        .append('rect')
+            .attr('y', 100)
+            .attr('width', 70)
+            .attr('height', 300)
+        .merge(rects)
+            .attr('x', d => d)
+}
+
+render([100]);
+render([300, 500, 700, 800, 880]);
+render([300, 500]);
+render([]);
+
+// This last invocation should leave you with
+// four evenly spaced rectangles.
+render([200, 400, 600, 800]);
+
+}
+    </script>
+  </body>
+</html>
